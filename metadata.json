@@ -1,0 +1,5 @@
+{
+  "name": "MacBook Pro Keyboard Visualizer",
+  "description": "A high-fidelity, interactive SVG rendering of a MacBook Pro ANSI keyboard layout with typing response.",
+  "requestFramePermissions": []
+}
