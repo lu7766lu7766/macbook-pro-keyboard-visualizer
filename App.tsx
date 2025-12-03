@@ -1,9 +1,27 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { MacBookKeyboard } from "./components/MacBookKeyboard"
+import { AudioManager } from "./audio"
 
 export default function App() {
   const [activeKeys, setActiveKeys] = useState<Set<string>>(new Set())
   const [lastEvent, setLastEvent] = useState<string>("Press any key...")
+  const [muted, setMuted] = useState(false)
+  const [volume, setVolume] = useState(0.65)
+  const audioRef = useRef<AudioManager | null>(null)
+
+  useEffect(() => {
+    audioRef.current = new AudioManager()
+    audioRef.current.setVolume(volume)
+    audioRef.current.setMuted(muted)
+  }, [])
+
+  useEffect(() => {
+    audioRef.current?.setMuted(muted)
+  }, [muted])
+
+  useEffect(() => {
+    audioRef.current?.setVolume(volume)
+  }, [volume])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -15,6 +33,7 @@ export default function App() {
       }
 
       setLastEvent(`${e.code} (${e.key})`)
+      audioRef.current?.play(e.code)
 
       setActiveKeys((prev) => {
         const newSet = new Set(prev)
@@ -56,6 +75,28 @@ export default function App() {
       <div className="mt-16 text-center text-gray-700 text-xs max-w-md">
         <p>100% SVG rendering. No images. Interactive.</p>
         <p className="mt-2">Try pressing modifier keys, arrows, and function keys.</p>
+      </div>
+
+      <div className="mt-6 flex flex-col sm:flex-row items-center gap-4 text-gray-200 bg-white/5 border border-white/10 rounded-xl px-4 py-3 backdrop-blur">
+        <button
+          onClick={() => setMuted((prev) => !prev)}
+          className="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition text-sm font-semibold"
+        >
+          {muted ? "取消靜音" : "靜音"}
+        </button>
+        <label className="flex items-center gap-2 text-sm font-mono w-full sm:w-auto">
+          <span className="text-gray-400">音量</span>
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.05"
+            value={volume}
+            onChange={(e) => setVolume(parseFloat(e.target.value))}
+            className="w-40 accent-gray-200"
+          />
+          <span className="w-10 text-right">{Math.round(volume * 100)}%</span>
+        </label>
       </div>
     </div>
   )
