@@ -44,7 +44,7 @@ export default function App() {
     <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4 md:p-12 overflow-hidden">
       <div className="mb-12 text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-gray-500 mb-4 tracking-tight">
-          MacBook Proooooo
+          MacBook Pro
         </h1>
         <p className="text-gray-500 font-mono text-sm h-6">{lastEvent}</p>
       </div>
