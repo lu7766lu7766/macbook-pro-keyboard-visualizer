@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "."),
-        "firebase-lucid": path.resolve(__dirname, "../firebase-lucid"),
+        // "firebase-lucid": path.resolve(__dirname, "../firebase-lucid"),
       },
     },
   }

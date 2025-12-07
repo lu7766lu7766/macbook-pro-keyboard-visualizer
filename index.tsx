@@ -24,19 +24,25 @@ db.initialize({
 //   password: "qqqwww",
 // })
 // 等待 auth 初始化完成
-await auth.ready()
+console.time("auth ready")
+console.log(await auth.ready())
 // 取得目前使用者
-console.log(auth.user())
+// console.log(auth.user())
+console.timeEnd("auth ready")
 
-// const user = await User.create({
-//   name: "Jac Wang",
-//   email: "lu7766@example.com",
-//   age: 37,
-// })
+await User.create({
+  name: "Jac Wang",
+  email: "lu7766@example.com",
+  age: 37,
+})
 // console.log(user)
+console.time("query")
+// const user = await User.query().where("email", "==", "lu7766@example.com").firstOrFail()
 const user = await User.query().preload("posts").where("email", "==", "lu7766@example.com").firstOrFail()
+// const user = await User.find("FXh0epgMCr2mID2G2Kkj")
+// console.log(await Post.query().where("authorId", "==", user.id).get())
 console.log(user)
-
+console.timeEnd("query")
 // 更新用戶
 // console.log(await User.query().where("age", ">=", 30).update({ age: 40}))
 // console.log(await user.merge({ age: 39 }).save())
