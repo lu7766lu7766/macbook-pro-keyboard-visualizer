@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client"
 import App from "./App"
 import { db, auth } from "firebase-lucid"
 import Product from "./models/Product"
+import Order from "./models/Order"
+import User from "./models/User"
 // import User from "./models/User"
 // import Post from "./models/Post"
 db.initialize({
@@ -14,17 +16,17 @@ db.initialize({
   appId: "1:363042314374:web:0876bd046c703d4d035907",
 })
 // console.log(
-//   await Product.create({
-//     name: "Product B",
-//     content: "This is product B",
-//     description: "Detailed description of product B",
-//     price: 19.99,
-//     status: true,
-//     tags: ["electronics", "gadget"],
-//   })
+// await Product.create({
+//   name: "Product B",
+//   content: "This is product B",
+//   description: "Detailed description of product B",
+//   price: 19.99,
+//   status: true,
+//   tags: ["electronics", "gadget"],
+// })
 // )
 // console.log(await Product.query().get())
-const product = await Product.find("zeeqoM32mC6pOj6xlF5Z")
+// const product = await Product.find("zeeqoM32mC6pOj6xlF5Z")
 // product.delete()
 // console
 //   .log
@@ -48,8 +50,20 @@ const product = await Product.find("zeeqoM32mC6pOj6xlF5Z")
 // 等待 auth 初始化完成
 console.time("auth ready")
 console.log(await auth.ready())
+// await User.create({
+//   name: "Jac Wang",
+//   // email: "
+// })
 // 取得目前使用者
 // console.log(auth.user())
+// const products = await Product.query().get()
+// // const user = auth.user()
+// const user = await User.first()
+// await Order.create({
+//   buyer_id: user.id,
+//   product_ids: products.map((p) => p.id!),
+// })
+// console.log(await User.query().preload("orders").get())
 console.timeEnd("auth ready")
 
 // await User.create({
