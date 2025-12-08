@@ -1,5 +1,4 @@
-import { hasMany } from "firebase-lucid"
-import { Model } from "firebase-lucid"
+import { Model, hasMany } from "firebase-lucid"
 import Order from "./Order"
 // import Post from "./Post"
 

@@ -64,6 +64,12 @@ console.log(await auth.ready())
 //   product_ids: products.map((p) => p.id!),
 // })
 // console.log(await User.query().preload("orders").get())
+const orders = await Order.query().get()
+for (const order of orders) {
+  order.buyer = await User.find(order.buyer_id)
+  order.products = await Promise.all(order.product_ids.map((id) => Product.find(id)))
+}
+console.log(orders)
 console.timeEnd("auth ready")
 
 // await User.create({
