@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { MacBookKeyboard } from "./components/MacBookKeyboard"
 import { AudioManager } from "./audio"
+import { auth } from "firebase-lucid"
 
 export default function App() {
   const [activeKeys, setActiveKeys] = useState<Set<string>>(new Set())
@@ -59,17 +60,68 @@ export default function App() {
     }
   }, [])
 
+  const [registerEmail, setRegisterEmail] = useState("")
+  const [registerPassword, setRegisterPassword] = useState("")
+  const [loginEmail, setLoginEmail] = useState("")
+  const [loginPassword, setLoginPassword] = useState("")
+  const [user, setUser] = useState({})
+  const register = async () => {
+    console.log(
+      await auth.register({
+        email: registerEmail,
+        password: registerPassword,
+      })
+    )
+    alert("Registered!")
+  }
+  const login = async () => {
+    const user = await auth.login({
+      email: loginEmail,
+      password: loginPassword,
+    })
+    setUser(user)
+    alert("Logged in!")
+  }
+
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4 md:p-12 overflow-hidden">
       <div className="mb-12 text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-gray-500 mb-4 tracking-tight">
           MacBook Pro
         </h1>
+        <div className="mb-4 border border-gray-500 ">
+          <div>
+            <input className="text-black" type="email" name="" id="" value={registerEmail} onChange={(e) => setRegisterEmail(e.target.value)} /> email
+          </div>
+          <div>
+            <input
+              className="text-black"
+              type="password"
+              name=""
+              id=""
+              value={registerPassword}
+              onChange={(e) => setRegisterPassword(e.target.value)}
+            />{" "}
+            password
+          </div>
+          <button onClick={register}>Register</button>
+        </div>
+        <div className="mb-4 border border-gray-500 ">
+          <div>
+            <input className="text-black" type="email" name="" id="" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} /> email
+          </div>
+          <div>
+            <input className="text-black" type="password" name="" id="" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />{" "}
+            password
+          </div>
+          <button onClick={login}>Login</button>
+        </div>
+        {JSON.stringify(user)}
         <p className="text-gray-500 font-mono text-sm h-6">{lastEvent}</p>
       </div>
 
       <div className="transform scale-[0.6] sm:scale-[0.7] md:scale-90 lg:scale-100 transition-transform duration-500">
-        <MacBookKeyboard activeKeys={activeKeys} />
+        {/* <MacBookKeyboard activeKeys={activeKeys} /> */}
       </div>
 
       <div className="mt-16 text-center text-gray-700 text-xs max-w-md">
