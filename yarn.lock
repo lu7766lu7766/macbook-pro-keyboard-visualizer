@@ -1090,10 +1090,10 @@ fdir@^6.4.4, fdir@^6.5.0:
   resolved "https://registry.yarnpkg.com/fdir/-/fdir-6.5.0.tgz#ed2ab967a331ade62f18d077dae192684d50d350"
   integrity sha512-tIbYtZbucOs0BRGqPJkshJUYdL+SDH7dVM8gjy+ERp3WAUjLEFJE+02kanyHtwjWOnwrKYBiwAmM0p4kLJAnXg==
 
-firebase-lucid@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/firebase-lucid/-/firebase-lucid-0.1.1.tgz#16a51b900a71e69a4d9ca416ebcc35d244f141cc"
-  integrity sha512-OtIdMHu8YJylwSOCaI3koGc1PJWlhbZ0In26TMwr56CKE1tdSU/hoYHqZrEZC3aWeZqVgDq4U6fVf5L/hyyJGQ==
+firebase-lucid@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/firebase-lucid/-/firebase-lucid-0.2.1.tgz#282c9afd195852bc31ffb9c58a053b76acf723fa"
+  integrity sha512-aN/+30taoLodUsdll38Bz6YkXDFOfq44Im6D/7GYd5zpDywaF27aP254RlPIWTlL0sTe2IrC8eykqhP/VXqcPg==
 
 firebase@^12.6.0:
   version "12.6.0"

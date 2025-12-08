@@ -106,7 +106,7 @@ export default function App() {
           </div>
           <button onClick={register}>Register</button>
         </div>
-        <div className="mb-4 border border-gray-500 ">
+        <div className="mb-4 border-[2px] border-gray-600">
           <div>
             <input className="text-black" type="email" name="" id="" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} /> email
           </div>
